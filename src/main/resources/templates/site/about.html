@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="site/head::head(${commons.site_title()},${commons.google_site_verification()}, ${commons.baidu_site_verification()})"></div>
+
+<style>
+    .p1 {
+        display: flex;
+    }
+
+</style>
+
+
+<body>
+
+    
+
+    	<!-- header -->
+
+        <div th:replace="site/header::header"></div>
+
+
+        <!-- header -->
+
+        <!-- main -->
+
+        <main role="main-inner-wrapper" class="container">
+
+        	
+
+            <div class="row">
+
+            
+
+            	<section class="col-xs-12 col-sm-6 col-md-6 col-lg-6 ">
+
+                	<article role="pge-title-content">
+
+                    	<header>
+
+                        	<h2><span>你好! </span> 我的名字叫浩云.</h2>
+
+                        </header>
+                        <p>日常使用Golang、Java(个人项目)作为服务端开发语言,工作年限<span id="work_diff"></span>年,有一定大数据开发经验(Spark、MapReduce),
+                            常用中间件有Redis、MySQL、Elasticsearch、Kafka、Vector DB、Docker等</p>
+                        <p>github个人主页:
+                            <a href="https://github.com/zhy842530698/randomRocket" style="font-style: italic">基于Socket5的代理工具</a>
+                        </p>
+                    </article>
+
+                </section>
+
+                
+
+                <section class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                	<article class="about-content">
+
+                    	<p>我在不断的持续学习,没有一种方案是完美的,没有一种技术是完美的,存在即合理,不断的学习进步才是最好</p>
+
+                        <p class="p1">可以添加google:zhang842530698@gmail.com,QQ mail:842530698@qq.com</p>
+
+                    </article>
+
+                </section>
+
+                
+
+                <div class="clearfix"></div>
+
+                
+
+                <!-- thumbnails -->
+
+                	<div class="thumbnails-pan">
+                        <th:block th:each="link,linkStat : ${links}">
+                            <th:block th:if="${linkStat.index < 3}">
+                                <section class="col-xs-12 col-sm-4 col-md-4 col-lg-4 ">
+
+                                    <figure>
+
+                                        <img th:src="@{'/site/images/about-images/about-image-' + ${linkStat.index+1} + '.jpg'}" th:onclick="'javascript:linkFirend(\''+${link.slug}+'\')'" class="img-responsive"/>
+
+                                        <figcaption>
+
+                                            <h3><th:block th:text="${link.name}"></th:block></h3>
+
+                                            <h5><th:block th:text="${link.description}"></th:block></h5>
+
+                                        </figcaption>
+
+                                    </figure>
+
+                                </section>
+                            </th:block>
+
+                        </th:block>
+
+
+
+                        
+
+                     
+
+                    </div>
+
+                <!-- thumbnails -->
+
+                
+
+                
+
+            </div>
+
+        </main>
+
+    	<!-- main -->
+
+        <!-- footer -->
+
+        <div th:replace="site/footer::footer(${commons.site_title()},${commons.site_record()},${commons.site_url()})"></div>
+    <script>
+        var workdiff = document.getElementById("work_diff")
+        workdiff.innerHTML =getDiffYear()
+        function getDiffYear(){
+            let currentDate = new Date()
+            // 22年8月
+            let workDate = new Date(1660875770000)
+
+            return currentDate.getFullYear()-workDate.getFullYear()
+        }
+
+    </script>
+</body>
+</html>
